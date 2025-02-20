@@ -7,11 +7,11 @@ USE ArcadeDB;
 -- Crear la tabla de usuarios
 CREATE TABLE Users (
     PlayerId INT PRIMARY KEY AUTO_INCREMENT,  -- ID único del jugador
-    Name VARCHAR(100) NOT NULL,               -- Nombre del jugador
-    Email VARCHAR(100) UNIQUE,                -- Email del jugador
+    Name VARCHAR(100) NOT NULL UNIQUE,        -- Nombre del jugador (debe ser único)
     TotalScore INT DEFAULT 0,                 -- Puntaje total acumulado
     CreateDate DATETIME DEFAULT CURRENT_TIMESTAMP -- Fecha de creación de la cuenta
 );
+
 
 -- Crear la tabla de juegos
 CREATE TABLE Games (

@@ -3,7 +3,7 @@ node_modules/
 package-lock.json
 
 # Configuración del entorno
-.env
+# .env
 
 # Logs y archivos temporales
 *.log

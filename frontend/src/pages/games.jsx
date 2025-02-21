@@ -1,8 +1,9 @@
-import { useNavigate, useParams } from "react-router-dom"; // useParams para obtener el userId desde la URL
-import { Box, Typography } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
+import { Box, Typography, Button } from "@mui/material";
 import piedraPapelTijera from "../assets/piedra-papel-tijeras.png";
 import ahorcado from "../assets/ahorcado.png";
 import astuciaNaval from "../assets/astucia-naval.png";
+import { FaRankingStar } from "react-icons/fa6";
 import "../styles/games.css";
 
 const games = [
@@ -24,18 +25,34 @@ const games = [
 ];
 
 const Games = () => {
-  const { id } = useParams(); // Obtenemos el userId desde la URL
-  const navigate = useNavigate(); // Hook de React Router para redirigir a las rutas
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const handleGameSelection = (gameId) => {
-    navigate(`/user/${id}/game/${gameId}`); // Usamos el userId desde la URL para la navegación
+    navigate(`/user/${id}/game/${gameId}`);
+  };
+
+  const handleRankingClick = () => {
+    navigate(`/user/${id}/ranking`);
   };
 
   return (
-    <Box className="games-container">
+    <Box className="games-container" position="relative">
       <Typography variant="h4" className="games-title">
         ¿Qué juego deseas jugar?
       </Typography>
+
+      <Box position="absolute" top={16} right={16}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleRankingClick}
+          startIcon={<FaRankingStar />}
+        >
+          Puntajes
+        </Button>
+      </Box>
+
       <Box className="games-list">
         {games.map((game) => (
           <Box

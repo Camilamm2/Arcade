@@ -1,0 +1,138 @@
+.hands-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(
+    135deg,
+    rgb(102, 14, 126) 0%,
+    rgb(37, 37, 157) 100%
+  );
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.vidas-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.vidas-container svg {
+  font-size: 1.8rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.vidas-container svg:hover {
+  transform: scale(1.2);
+}
+
+.opciones-container {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.opciones-container button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.opciones-container button:hover {
+  transform: scale(1.2);
+}
+
+.eleccion-card {
+  width: 220px;
+  text-align: center;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.eleccion-card:hover {
+  transform: scale(1.05);
+}
+
+.eleccion-card img {
+  width: 90px;
+}
+
+.resultado {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  display: inline-block;
+}
+
+.MuiDialog-paper {
+  background: linear-gradient(
+    135deg,
+    rgb(180, 30, 200) 0%,
+    rgb(140, 10, 170) 100%
+  );
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+  padding: 25px;
+}
+
+.MuiDialogTitle-root {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.MuiDialogContent-root {
+  font-size: 1.3rem;
+  padding: 20px;
+}
+
+.MuiDialogActions-root {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15px;
+}
+
+.dialog-button {
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 12px;
+  padding: 12px 24px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.replay-button {
+  background: rgba(120, 15, 172, 0.81);
+}
+
+.replay-button:hover {
+  background: rgb(102, 14, 126);
+  transform: scale(1.1);
+}
+
+.exit-button {
+  background: rgb(200, 50, 50);
+}
+
+.exit-button:hover {
+  background: rgb(170, 40, 40);
+  transform: scale(1.1);
+}

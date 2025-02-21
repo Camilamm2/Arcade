@@ -1,36 +1,39 @@
 -- Crear la base de datos
-CREATE DATABASE ArcadeDB;
+CREATE DATABASE arcadedb;
 
 -- Usar la base de datos recién creada
-USE ArcadeDB;
+USE arcadedb;
 
 -- Crear la tabla de usuarios
-CREATE TABLE Users (
-    PlayerId INT PRIMARY KEY AUTO_INCREMENT,  -- ID único del jugador
-    Name VARCHAR(100) NOT NULL UNIQUE,        -- Nombre del jugador (debe ser único)
-    TotalScore INT DEFAULT 0,                 -- Puntaje total acumulado
-    CreateDate DATETIME DEFAULT CURRENT_TIMESTAMP -- Fecha de creación de la cuenta
-);
-
+CREATE TABLE `users` (
+  `PlayerId` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(10) NOT NULL,
+  `CreateDate` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`PlayerId`),
+  UNIQUE KEY `Name` (`Name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Crear la tabla de juegos
-CREATE TABLE Games (
-    GameId INT PRIMARY KEY AUTO_INCREMENT,   -- ID único del juego
-    GameName VARCHAR(100) NOT NULL           -- Nombre del juego
-);
+CREATE TABLE `games` (
+  `GameId` int(11) NOT NULL AUTO_INCREMENT,
+  `GameName` varchar(100) NOT NULL,
+  PRIMARY KEY (`GameId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Crear la tabla de puntajes
-CREATE TABLE Scores (
-    ScoreId INT PRIMARY KEY AUTO_INCREMENT,  -- ID único del puntaje
-    PlayerId INT,                             -- ID del jugador (FK de la tabla Users)
-    GameId INT,                               -- ID del juego (FK de la tabla Games)
-    Score INT,                                -- Puntaje obtenido en el juego
-    FOREIGN KEY (PlayerId) REFERENCES Users(PlayerId) ON DELETE CASCADE,
-    FOREIGN KEY (GameId) REFERENCES Games(GameId) ON DELETE CASCADE
-);
-
+CREATE TABLE `scores` (
+  `ScoreId` int(11) NOT NULL AUTO_INCREMENT,
+  `PlayerId` int(11) DEFAULT NULL,
+  `GameId` int(11) DEFAULT NULL,
+  `Score` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ScoreId`),
+  KEY `PlayerId` (`PlayerId`),
+  KEY `GameId` (`GameId`),
+  CONSTRAINT `scores_ibfk_1` FOREIGN KEY (`PlayerId`) REFERENCES `users` (`PlayerId`) ON DELETE CASCADE,
+  CONSTRAINT `scores_ibfk_2` FOREIGN KEY (`GameId`) REFERENCES `games` (`GameId`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 -- Insertar juegos en la tabla Games
-INSERT INTO Games (GameName)
+INSERT INTO games (GameName)
 VALUES
     ('Piedra, Papel y Tijera'),
     ('Ahorcado'),

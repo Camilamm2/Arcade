@@ -79,68 +79,39 @@ const registerScore = async (req, res) => {
   }
 };
 
-// Obtener el ranking de un juego por puntaje
-const getGameRanking = async (req, res) => {
-  const { GameId, rows, first, sortOrder } = req.query;
-
+const getAllRankings = async (req, res) => {
   const connection = await pool.getConnection();
 
   try {
-    const order = sortOrder === "1" ? "ASC" : "DESC";
-
-    const [resultsQuery] = await connection.execute(
-      `
-            SELECT U.Name, S.Score
-            FROM Scores S
-            JOIN Users U ON S.PlayerId = U.PlayerId
-            WHERE S.GameId = ?
-            ORDER BY S.Score ${order}
-            LIMIT ? OFFSET ?`,
-      [GameId, rows, first]
+    // Consulta para obtener todos los puntajes, los nombres de los jugadores y los nombres de los juegos
+    const [rankingQuery] = await connection.execute(
+      `SELECT u.Name AS PlayerName, g.GameName, s.Score
+       FROM scores s
+       JOIN users u ON s.PlayerId = u.PlayerId
+       JOIN games g ON s.GameId = g.GameId
+       ORDER BY g.GameId, s.Score DESC`
     );
 
-    let total = 0;
-    if (first === "0") {
-      const [resultsTotal] = await connection.execute(
-        `SELECT COUNT(DISTINCT PlayerId) total FROM Scores WHERE GameId = ?`,
-        [GameId]
-      );
-      total = resultsTotal.total;
-    }
+    // Organizar los jugadores en un ranking
+    const rankings = {};
+    rankingQuery.forEach((row) => {
+      const gameName = row.GameName;
+      if (!rankings[gameName]) {
+        rankings[gameName] = [];
+      }
+      rankings[gameName].push({
+        GameName: row.GameName,
+        PlayerName: row.PlayerName,
+        Score: row.Score,
+      });
+    });
 
-    res.status(200).json({ results: resultsQuery, total });
+    res.status(200).json({ rankings });
   } catch (error) {
     console.log(error);
     res
       .status(500)
-      .json({ mensaje: "Error al obtener el ranking: " + error.message });
-  } finally {
-    if (connection) connection.release();
-  }
-};
-
-// Eliminar un jugador (y sus puntajes asociados)
-const deleteUser = async (req, res) => {
-  const { PlayerId } = req.query;
-
-  const connection = await pool.getConnection();
-
-  try {
-    const [deleteQuery] = await connection.execute(
-      "DELETE FROM Users WHERE PlayerId = ?",
-      [PlayerId]
-    );
-
-    if (deleteQuery.affectedRows <= 0) {
-      return res
-        .status(500)
-        .json({ mensaje: "Error al eliminar el jugador de la base de datos" });
-    }
-
-    res.status(200).json({ mensaje: "Jugador eliminado correctamente." });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ mensaje: "Error en el servidor: " + error.message });
+      .json({ mensaje: "Error al obtener los rankings: " + error.message });
   } finally {
     if (connection) connection.release();
   }
@@ -149,6 +120,5 @@ const deleteUser = async (req, res) => {
 module.exports = {
   createUser,
   registerScore,
-  getGameRanking,
-  deleteUser,
+  getAllRankings,
 };

@@ -21,11 +21,11 @@ body {
 }
 
 .games-title {
-  margin-bottom: 60px; /* Se aumentó el margen inferior */
+  margin-bottom: 60px;
   font-size: 24px;
   font-weight: bold;
-  color: #fff; /* Texto en blanco para resaltar */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Pequeña sombra para mejorar visibilidad */
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .games-list {
@@ -37,7 +37,7 @@ body {
   position: relative;
   width: 150px;
   height: 150px;
-  border-radius: 50%; /* Esto crea el círculo alrededor de la imagen */
+  border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
@@ -45,8 +45,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff; /* Fondo blanco para hacer que la imagen se destaque */
-  border: 5px solid #fff; /* Asegura un borde blanco alrededor del círculo */
+  background-color: #fff;
+  border: 5px solid #fff;
 }
 
 .game-item:hover {
@@ -57,8 +57,8 @@ body {
 .game-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Esto mantiene la proporción de la imagen */
-  border-radius: 50%; /* Hace que la imagen sea redonda */
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .game-name-overlay {

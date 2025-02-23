@@ -6,7 +6,7 @@ import Hands from "./pages/hands";
 import Hanged from "./pages/hanged";
 import PlayBattleship from "./pages/playBattleship";
 import Battleship from "./pages/battleships";
-import BlockBackButton from "./components/block";
+// import BlockBackButton from "./components/block";
 function App() {
   return (
     <Router>

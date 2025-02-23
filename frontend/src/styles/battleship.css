@@ -1,0 +1,135 @@
+/* Contenedor principal del módulo */
+.battleship-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgb(102, 14, 126) 0%,
+    rgb(37, 37, 157) 100%
+  );
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  padding: 3px;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Hereda el tamaño de fuente para todos los elementos hijos */
+.battleship-container * {
+  font-size: inherit;
+}
+
+/* Título principal */
+.title {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Subtítulo */
+.sub-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Tablero de ataque */
+.attack-board {
+  display: grid;
+  grid-template-columns: repeat(10, 30px);
+  grid-gap: 3px;
+  margin-bottom: 2rem;
+}
+
+/* Estilo base para cada celda del tablero */
+.attack-board div {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Contenedor para los barcos */
+.ships-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+/* Tarjeta para cada barco */
+.ship-card {
+  width: 140px;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  transition: transform 0.3s ease-in-out;
+  font-size: 11px;
+}
+
+.ship-card:hover {
+  transform: scale(1.05);
+}
+
+/* Botón personalizado: color morado */
+
+/* Botón de orientación mejorado */
+.orientation-btn {
+  background-color: #890c8d00; /* Verde llamativo */
+  color: white;
+  border: none;
+  margin: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+/* Botón de iniciar juego mejorado */
+.start-game-btn {
+  background-color: #70007b; /* Naranja fuerte */
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  margin: 1rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.start-game-btn:hover {
+  background-color: #e20fdb;
+  transform: scale(1.08);
+}
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .battleship-container {
+    padding: 8px;
+  }
+  .ship-card {
+    width: 120px;
+    padding: 8px;
+    font-size: 10px;
+  }
+  .attack-board {
+    grid-template-columns: repeat(5, 30px);
+    margin-bottom: 1.5rem;
+  }
+  .attack-board div {
+    width: 28px;
+    height: 28px;
+  }
+}

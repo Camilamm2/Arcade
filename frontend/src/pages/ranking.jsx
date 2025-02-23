@@ -134,6 +134,8 @@ const ApexChart = () => {
         flexDirection: "column",
         alignItems: "center",
         marginTop: "20px",
+        overflowY: "auto",
+        height: "100vh",
       }}
     >
       <h2 style={{ textAlign: "center", marginBottom: "20px", color: "#fff" }}>
@@ -167,6 +169,7 @@ const ApexChart = () => {
           flexWrap: "wrap",
           justifyContent: "center",
           marginTop: "20px",
+          marginBottom: "50px",
           gap: "20px",
         }}
       >

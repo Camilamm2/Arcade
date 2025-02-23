@@ -37,6 +37,7 @@ const createUser = async (req, res) => {
   }
 };
 
+// Registrar puntaje
 const registerScore = async (req, res) => {
   const { PlayerId, GameId, Score } = req.body;
 
@@ -79,6 +80,7 @@ const registerScore = async (req, res) => {
   }
 };
 
+// Obtener todos los rankings
 const getAllRankings = async (req, res) => {
   const connection = await pool.getConnection();
 
@@ -117,8 +119,30 @@ const getAllRankings = async (req, res) => {
   }
 };
 
+// Obtener listado de palabras con pistas
+const getWordsWithHints = async (req, res) => {
+  const connection = await pool.getConnection();
+
+  try {
+    // Consulta para obtener todas las palabras y sus pistas
+    const [wordsQuery] = await connection.execute(
+      `SELECT word, hint FROM words ORDER BY id ASC`
+    );
+
+    res.status(200).json({ words: wordsQuery });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ mensaje: "Error al obtener las palabras: " + error.message });
+  } finally {
+    if (connection) connection.release();
+  }
+};
+
 module.exports = {
   createUser,
   registerScore,
   getAllRankings,
+  getWordsWithHints,
 };

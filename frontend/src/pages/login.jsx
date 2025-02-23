@@ -48,7 +48,7 @@ const Login = () => {
               <Form>
                 <Field
                   as={TextField}
-                  label="Nombre"
+                  label="Usuario Unico"
                   name="name"
                   fullWidth
                   margin="normal"

@@ -1,23 +1,13 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import {
-  Box,
-  Typography,
-  Button,
-  Card,
-  CardContent,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-} from "@mui/material";
+import { useParams } from "react-router-dom";
+import { Box, Typography, Button, Card, CardContent } from "@mui/material";
 import { FaHeart } from "react-icons/fa";
 import { axiosApi } from "../api/axios";
 import piedraImg from "../assets/piedra.png";
 import papelImg from "../assets/papel.png";
 import tijeraImg from "../assets/tijera.png";
 import "../styles/Hands.css";
-
+import GameOver from "../components/repeatDialog";
 const options = [
   { name: "Piedra", image: piedraImg },
   { name: "Papel", image: papelImg },
@@ -40,7 +30,6 @@ const determineWinner = (player, computer) => {
 };
 
 const Hands = () => {
-  const navigate = useNavigate();
   const { id } = useParams();
   const [playerChoice, setPlayerChoice] = useState(null);
   const [computerChoice, setComputerChoice] = useState(null);
@@ -98,21 +87,21 @@ const Hands = () => {
         Piedra, Papel o Tijeras
       </Typography>
 
-      <Box className="vidas-container">
+      <Box className="lives-container">
         <Typography variant="h6">Tus vidas:</Typography>
         {[...Array(playerLives)].map((_, i) => (
           <FaHeart key={i} color="red" />
         ))}
       </Box>
 
-      <Box className="vidas-container">
+      <Box className="lives-container">
         <Typography variant="h6">Vidas de la máquina:</Typography>
         {[...Array(computerLives)].map((_, i) => (
           <FaHeart key={i} color="white" />
         ))}
       </Box>
 
-      <Box className="opciones-container">
+      <Box className="options-container">
         {options.map((option) => (
           <Button key={option.name} onClick={() => playRound(option)}>
             <img src={option.image} alt={option.name} width={100} />
@@ -120,8 +109,8 @@ const Hands = () => {
         ))}
       </Box>
 
-      <Box className="opciones-container">
-        <Card className="eleccion-card">
+      <Box className="options-container">
+        <Card className="choice-card">
           <CardContent>
             <Typography variant="h6" color="primary">
               Tú
@@ -138,7 +127,7 @@ const Hands = () => {
           </CardContent>
         </Card>
 
-        <Card className="eleccion-card">
+        <Card className="choice-card">
           <CardContent>
             <Typography variant="h6" color="secondary">
               La máquina
@@ -156,25 +145,14 @@ const Hands = () => {
         </Card>
       </Box>
 
-      <Typography className="resultado">{result}</Typography>
+      <Typography className="result">{result}</Typography>
 
-      <Dialog open={openDialog} onClose={() => {}} disableEscapeKeyDown>
-        <DialogTitle>Juego Terminado</DialogTitle>
-        <DialogContent>
-          <Typography>{finalMessage}</Typography>
-        </DialogContent>
-        <DialogActions>
-          <button className="dialog-button replay-button" onClick={resetGame}>
-            Repetir
-          </button>
-          <button
-            className="dialog-button exit-button"
-            onClick={() => navigate(`/user/${id}`)}
-          >
-            Salir
-          </button>
-        </DialogActions>
-      </Dialog>
+      <GameOver
+        openDialog={openDialog}
+        finalMessage={finalMessage}
+        id={id}
+        resetGame={resetGame}
+      />
     </Box>
   );
 };

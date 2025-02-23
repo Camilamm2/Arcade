@@ -1,0 +1,56 @@
+.MuiDialog-paper {
+  background: linear-gradient(
+    135deg,
+    rgb(180, 30, 200) 0%,
+    rgb(140, 10, 170) 100%
+  );
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+  padding: 25px;
+}
+
+.MuiDialogTitle-root {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.MuiDialogContent-root {
+  font-size: 1.3rem;
+  padding: 20px;
+}
+
+.MuiDialogActions-root {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15px;
+}
+
+.dialog-button {
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 12px;
+  padding: 12px 24px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.replay-button {
+  background: rgba(120, 15, 172, 0.81);
+}
+
+.replay-button:hover {
+  background: rgb(102, 14, 126);
+  transform: scale(1.1);
+}
+
+.exit-button {
+  background: rgb(200, 50, 50);
+}
+
+.exit-button:hover {
+  background: rgb(170, 40, 40);
+  transform: scale(1.1);
+}

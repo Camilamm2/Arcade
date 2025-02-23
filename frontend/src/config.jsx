@@ -10,7 +10,7 @@ import BlockBackButton from "./components/block";
 function App() {
   return (
     <Router>
-      <BlockBackButton />
+      {/* <BlockBackButton /> */}
 
       <Routes>
         <Route path="/" element={<Login />} />

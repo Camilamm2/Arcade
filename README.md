@@ -1,4 +1,4 @@
-Arcade Project Setup
+#Arcade 
 Este proyecto requiere tener configurado Node.js, npm, MySQL y XAMPP con Apache y MySQL.
 
 Requisitos
